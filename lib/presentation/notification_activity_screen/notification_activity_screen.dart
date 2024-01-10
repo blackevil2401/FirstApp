@@ -1,0 +1,19 @@
+import 'models/notification_activity_model.dart';import 'package:blackevil2401_s_application3/core/app_export.dart';import 'package:blackevil2401_s_application3/widgets/app_bar/appbar_leading_image.dart';import 'package:blackevil2401_s_application3/widgets/app_bar/appbar_title.dart';import 'package:blackevil2401_s_application3/widgets/app_bar/custom_app_bar.dart';import 'package:flutter/material.dart';import 'provider/notification_activity_provider.dart';class NotificationActivityScreen extends StatefulWidget {const NotificationActivityScreen({Key? key}) : super(key: key);
+
+@override NotificationActivityScreenState createState() =>  NotificationActivityScreenState();
+
+static Widget builder(BuildContext context) { return ChangeNotifierProvider(create: (context) => NotificationActivityProvider(), child: NotificationActivityScreen()); } 
+ }
+class NotificationActivityScreenState extends State<NotificationActivityScreen> {@override void initState() { super.initState(); } 
+@override Widget build(BuildContext context) { return SafeArea(child: Scaffold(appBar: _buildAppBar(context), body: Container(width: double.maxFinite, padding: EdgeInsets.symmetric(vertical: 11.v), child: Column(children: [_buildActivityDetails(context, transactionTitle: "msg_transaction_nike".tr, transactionDescription: "msg_culpa_cillum_consectetur".tr, transactionTime: "msg_april_30_2014_1_01".tr, onTapTransactionIcon: () {onTapTransactionIcon(context);}), _buildActivityDetails(context, transactionTitle: "msg_transaction_nike2".tr, transactionDescription: "msg_culpa_cillum_consectetur".tr, transactionTime: "msg_april_30_2014_1_01".tr), SizedBox(height: 5.v), _buildActivityDetails(context, transactionTitle: "msg_transaction_nike3".tr, transactionDescription: "msg_culpa_cillum_consectetur".tr, transactionTime: "msg_april_30_2014_1_01".tr)])))); } 
+/// Section Widget
+PreferredSizeWidget _buildAppBar(BuildContext context) { return CustomAppBar(leadingWidth: 40.h, leading: AppbarLeadingImage(imagePath: ImageConstant.imgArrowLeft, margin: EdgeInsets.only(left: 16.h, top: 15.v, bottom: 16.v), onTap: () {onTapArrowLeft(context);}), title: AppbarTitle(text: "lbl_activity".tr, margin: EdgeInsets.only(left: 12.h))); } 
+/// Common widget
+Widget _buildActivityDetails(BuildContext context, {required String transactionTitle, required String transactionDescription, required String transactionTime, Function? onTapTransactionIcon, }) { return Container(width: double.maxFinite, padding: EdgeInsets.all(16.h), decoration: AppDecoration.fillOnPrimaryContainer, child: Row(mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.start, children: [CustomImageView(imagePath: ImageConstant.imgTransactionIcon, height: 24.adaptSize, width: 24.adaptSize, margin: EdgeInsets.only(bottom: 94.v), onTap: () {onTapTransactionIcon!.call();}), Expanded(child: Padding(padding: EdgeInsets.only(left: 12.h), child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [Text(transactionTitle, style: TextStyle(color: theme.colorScheme.onPrimary.withOpacity(1), fontSize: 14.fSize, fontFamily: 'Poppins', fontWeight: FontWeight.w700)), SizedBox(height: 11.v), SizedBox(width: 305.h, child: Text(transactionDescription, maxLines: 3, overflow: TextOverflow.ellipsis, style: TextStyle(color: appTheme.blueGray300, fontSize: 12.fSize, fontFamily: 'Poppins', fontWeight: FontWeight.w400))), SizedBox(height: 5.v), Text(transactionTime, style: TextStyle(color: theme.colorScheme.onPrimary.withOpacity(1), fontSize: 10.fSize, fontFamily: 'Poppins', fontWeight: FontWeight.w400))])))])); } 
+
+/// Navigates to the previous screen.
+onTapArrowLeft(BuildContext context) { NavigatorService.goBack(); } 
+
+/// Navigates to the previous screen.
+onTapTransactionIcon(BuildContext context) { NavigatorService.goBack(); } 
+ }
